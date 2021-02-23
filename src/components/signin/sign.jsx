@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import './signin.css';
+import {
+  FormContainer,
+  SignInTitle,
+  FormItem,
+  FormButton,
+  FormLabel,
+  FormInput,
+} from './signin.styles';
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
@@ -21,21 +28,21 @@ const SignIn = () => {
 
   return (
     <div>
-      <form class="form">
-        <h2>Sign In</h2>
-        <div class="form-control">
-          <label for="username">Username</label>
-          <input
+      <FormContainer>
+        <SignInTitle>Sign In</SignInTitle>
+        <FormItem>
+          <FormLabel for="username">Username</FormLabel>
+          <FormInput
             type="text"
             placeholder="Enter Username"
             id="username"
             value={username}
             onChange={usernameHandlerChange}
           />
-        </div>
+        </FormItem>
         <div class="form-control">
-          <label for="password">Password</label>
-          <input
+          <FormLabel for="password">Password</FormLabel>
+          <FormInput
             type="password"
             placeholder="Enter Password"
             id="password"
@@ -44,7 +51,7 @@ const SignIn = () => {
           />
         </div>
         <div>
-          <button
+          <FormButton
             className="btn"
             onClick={(event) => {
               event.preventDefault();
@@ -52,9 +59,9 @@ const SignIn = () => {
             }}
           >
             Submit
-          </button>
+          </FormButton>
         </div>
-      </form>
+      </FormContainer>
     </div>
   );
 };
