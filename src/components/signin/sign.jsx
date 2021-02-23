@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './signin.css';
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
@@ -20,7 +21,7 @@ const SignIn = () => {
 
   return (
     <div>
-      <form id="form" class="form">
+      <form class="form">
         <h2>Sign In</h2>
         <div class="form-control">
           <label for="username">Username</label>
@@ -44,6 +45,7 @@ const SignIn = () => {
         </div>
         <div>
           <button
+            className="btn"
             onClick={(event) => {
               event.preventDefault();
               verifyLogin();
