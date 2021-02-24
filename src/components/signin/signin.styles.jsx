@@ -30,7 +30,7 @@ export const FormLabel = styled.label`
 `;
 
 export const FormInput = styled.input`
-  border: 2px solid aliceblue;
+  border: 1px solid #3498db;
   border-radius: 4px;
   display: block;
   width: 100%;
