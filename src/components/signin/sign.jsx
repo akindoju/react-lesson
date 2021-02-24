@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   FormContainer,
   SignInTitle,
@@ -11,6 +12,7 @@ import {
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const usernameHandlerChange = (event) => {
     setUsername(event.target.value);
@@ -22,7 +24,7 @@ const SignIn = () => {
 
   const verifyLogin = () => {
     username === 'Shayo' && password === '1234'
-      ? alert('Sign In successful')
+      ? history.push('/mainpage')
       : alert('Incorrect Sign In details');
   };
 
