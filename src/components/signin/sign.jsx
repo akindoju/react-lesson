@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   loginFailure,
@@ -19,7 +19,7 @@ const SignIn = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
-  //const { loginStart, loginFailure, loginSuccess } = props;
+  // const { loginStart, loginFailure, loginSuccess } = props;
   const dispatch = useDispatch();
 
   const usernameHandlerChange = (event) => {
@@ -34,11 +34,11 @@ const SignIn = (props) => {
     const isVerified = username === 'Shayo' && password === '1234';
     if (isVerified) {
       //dispatch login success
-      dispatch(loginSuccess());
+      dispatch(loginSuccess({ username: 'Shayo', password: 1234 }));
       history.push('/mainpage');
     } else {
       //dispatch login failure
-      dispatch(loginFailure());
+      dispatch(loginFailure('Failure'));
       alert('Incorrect details, better try again');
     }
     // ? history.push('/mainpage')
