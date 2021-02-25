@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   loginFailure,
@@ -19,7 +19,8 @@ const SignIn = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
-  const { loginStart, loginFailure, loginSuccess } = props;
+  //const { loginStart, loginFailure, loginSuccess } = props;
+  const dispatch = useDispatch();
 
   const usernameHandlerChange = (event) => {
     setUsername(event.target.value);
@@ -33,11 +34,11 @@ const SignIn = (props) => {
     const isVerified = username === 'Shayo' && password === '1234';
     if (isVerified) {
       //dispatch login success
-      loginSuccess();
+      dispatch(loginSuccess());
       history.push('/mainpage');
     } else {
       //dispatch login failure
-      loginFailure();
+      dispatch(loginFailure());
       alert('Incorrect details, better try again');
     }
     // ? history.push('/mainpage')
@@ -71,7 +72,7 @@ const SignIn = (props) => {
             className="btn"
             onClick={(event) => {
               event.preventDefault();
-              loginStart();
+              dispatch(loginStart());
               verifyLogin();
             }}
           >
@@ -83,20 +84,20 @@ const SignIn = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  loginStart: () => {
-    dispatch(loginStart());
-  },
-  loginSuccess: (user) => {
-    dispatch(loginSuccess(user));
-  },
-  loginFailure: (errorMessage) => {
-    dispatch(loginFailure(errorMessage));
-  },
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   loginStart: () => {
+//     dispatch(loginStart());
+//   },
+//   loginSuccess: (user) => {
+//     dispatch(loginSuccess(user));
+//   },
+//   loginFailure: (errorMessage) => {
+//     dispatch(loginFailure(errorMessage));
+//   },
+// });
 
 // const mapStateToProps = (state) => ({
 //   userReal: state.user.currentUser
 // })
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default SignIn;
