@@ -18,8 +18,7 @@ export const SignInTitle = styled.h2`
 `;
 
 export const FormItem = styled.div`
-  margin-bottom: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 5px;
   position: relative;
 `;
 
@@ -35,6 +34,7 @@ export const FormInput = styled.input`
   display: block;
   width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
   font-size: 14px;
   &:focus {
     outline: none;
@@ -44,7 +44,6 @@ export const FormInput = styled.input`
 
 export const FormButton = styled.button`
   width: 100%;
-  margin-top: 15px;
   background-color: #3498db;
   border: 2px solid #3498db;
   border-radius: 4px;
