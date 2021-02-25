@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import {
+  loginFailure,
+  loginStart,
+  loginSuccess,
+} from '../../redux/user/user.actions';
 import {
   FormContainer,
   SignInTitle,
@@ -9,10 +15,11 @@ import {
   FormInput,
 } from './signin.styles';
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
+  const { loginStart, loginFailure, loginSuccess } = props;
 
   const usernameHandlerChange = (event) => {
     setUsername(event.target.value);
@@ -23,9 +30,18 @@ const SignIn = () => {
   };
 
   const verifyLogin = () => {
-    username === 'Shayo' && password === '1234'
-      ? history.push('/mainpage')
-      : alert('Incorrect Sign In details');
+    const isVerified = username === 'Shayo' && password === '1234';
+    if (isVerified) {
+      //dispatch login success
+      loginSuccess();
+      history.push('/mainpage');
+    } else {
+      //dispatch login failure
+      loginFailure();
+      alert('Incorrect details, better try again');
+    }
+    // ? history.push('/mainpage')
+    // : alert('Incorrect Sign In details');
   };
 
   return (
@@ -33,7 +49,7 @@ const SignIn = () => {
       <FormContainer>
         <SignInTitle>Sign In</SignInTitle>
         <FormItem>
-          <FormLabel for="username">Username</FormLabel>
+          <FormLabel htmlfor="username">Username</FormLabel>
           <FormInput
             type="text"
             placeholder="Enter Username"
@@ -41,9 +57,7 @@ const SignIn = () => {
             value={username}
             onChange={usernameHandlerChange}
           />
-        </FormItem>
-        <div class="form-control">
-          <FormLabel for="password">Password</FormLabel>
+          <FormLabel htmlfor="password">Password</FormLabel>
           <FormInput
             type="password"
             placeholder="Enter Password"
@@ -51,12 +65,13 @@ const SignIn = () => {
             value={password}
             onChange={passwordHandlerChange}
           />
-        </div>
+        </FormItem>
         <div>
           <FormButton
             className="btn"
             onClick={(event) => {
               event.preventDefault();
+              loginStart();
               verifyLogin();
             }}
           >
@@ -68,4 +83,20 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => ({
+  loginStart: () => {
+    dispatch(loginStart());
+  },
+  loginSuccess: (user) => {
+    dispatch(loginSuccess(user));
+  },
+  loginFailure: (errorMessage) => {
+    dispatch(loginFailure(errorMessage));
+  },
+});
+
+// const mapStateToProps = (state) => ({
+//   userReal: state.user.currentUser
+// })
+
+export default connect(null, mapDispatchToProps)(SignIn);
