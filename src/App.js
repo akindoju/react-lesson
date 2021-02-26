@@ -2,10 +2,10 @@ import './App.css';
 import SignIn from './components/signin/sign';
 import MainPage from './components/mainpage/mainpage';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-function App(props) {
-  const { user } = props;
+function App() {
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <div className="App">
       <Switch>
@@ -24,8 +24,8 @@ function App(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user.currentUser,
-});
+// const mapStateToProps = (state) => ({
+//   user: state.user.currentUser,
+// });
 
-export default connect(mapStateToProps)(App);
+export default App;

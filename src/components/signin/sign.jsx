@@ -41,8 +41,6 @@ const SignIn = (props) => {
       dispatch(loginFailure('Failure'));
       alert('Incorrect details, better try again');
     }
-    // ? history.push('/mainpage')
-    // : alert('Incorrect Sign In details');
   };
 
   return (
@@ -95,9 +93,5 @@ const SignIn = (props) => {
 //     dispatch(loginFailure(errorMessage));
 //   },
 // });
-
-// const mapStateToProps = (state) => ({
-//   userReal: state.user.currentUser
-// })
 
 export default SignIn;
