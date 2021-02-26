@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { loginAsync } from '../../redux/user/user.actions';
 import {
@@ -17,6 +17,7 @@ const SignIn = () => {
   const history = useHistory();
   // const { loginStart, loginFailure, loginSuccess } = props;
   const dispatch = useDispatch();
+  const errorMessage = useSelector((state) => state.user.errorMessage);
 
   const usernameHandlerChange = (event) => {
     setUsername(event.target.value);
@@ -62,6 +63,7 @@ const SignIn = () => {
           />
         </FormItem>
         <div>
+          {errorMessage}
           <FormButton
             className="btn"
             onClick={(event) => {
