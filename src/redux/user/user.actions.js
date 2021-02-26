@@ -23,3 +23,18 @@ export const loginFailure = (errorMessage) => {
 export const logout = () => {
   return { type: userTypes.LOGOUT };
 };
+
+export const loginAsync = (username, password) => {
+  return (dispatch) => {
+    dispatch(loginStart());
+    const credentials = { username: `Shayo`, password: 1234 };
+    if (
+      username === credentials.username &&
+      password === credentials.password
+    ) {
+      dispatch(loginSuccess(credentials));
+    } else {
+      dispatch(loginFailure('Incorrect Credentials'));
+    }
+  };
+};

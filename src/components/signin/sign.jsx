@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {
-  loginFailure,
-  loginStart,
-  loginSuccess,
-} from '../../redux/user/user.actions';
+import { loginAsync } from '../../redux/user/user.actions';
 import {
   FormContainer,
   SignInTitle,
@@ -15,7 +11,7 @@ import {
   FormInput,
 } from './signin.styles';
 
-const SignIn = (props) => {
+const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
@@ -30,18 +26,18 @@ const SignIn = (props) => {
     setPassword(event.target.value);
   };
 
-  const verifyLogin = () => {
-    const isVerified = username === 'Shayo' && password === '1234';
-    if (isVerified) {
-      //dispatch login success
-      dispatch(loginSuccess({ username: 'Shayo', password: 1234 }));
-      history.push('/mainpage');
-    } else {
-      //dispatch login failure
-      dispatch(loginFailure('Failure'));
-      alert('Incorrect details, better try again');
-    }
-  };
+  // const verifyLogin = () => {
+  //   const isVerified = username === 'Shayo' && password === '1234';
+  //   if (isVerified) {
+  //     //dispatch login success
+  //     dispatch(loginSuccess({ username: 'Shayo', password: 1234 }));
+  //     history.push('/mainpage');
+  //   } else {
+  //     //dispatch login failure
+  //     dispatch(loginFailure('Failure'));
+  //     alert('Incorrect details, better try again');
+  //   }
+  // };
 
   return (
     <div>
@@ -70,8 +66,7 @@ const SignIn = (props) => {
             className="btn"
             onClick={(event) => {
               event.preventDefault();
-              dispatch(loginStart());
-              verifyLogin();
+              dispatch(loginAsync(username, password));
             }}
           >
             Submit
