@@ -42,6 +42,12 @@ export const FormInput = styled.input`
   }
 `;
 
+export const ErrorMessage = styled.div`
+  position: fixed;
+  bottom: 16.5rem;
+  color: red;
+`;
+
 export const FormButton = styled.button`
   width: 100%;
   background-color: #3498db;
@@ -52,4 +58,5 @@ export const FormButton = styled.button`
   padding: 6px 10px;
   color: white;
   cursor: pointer;
+  margin-top: 15px;
 `;

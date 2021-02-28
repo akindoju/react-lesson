@@ -9,6 +9,7 @@ import {
   FormButton,
   FormLabel,
   FormInput,
+  ErrorMessage,
 } from './signin.styles';
 
 const SignIn = () => {
@@ -62,8 +63,8 @@ const SignIn = () => {
             onChange={passwordHandlerChange}
           />
         </FormItem>
+        <ErrorMessage>{errorMessage}</ErrorMessage>
         <div>
-          {errorMessage}
           <FormButton
             className="btn"
             onClick={(event) => {

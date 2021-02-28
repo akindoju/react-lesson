@@ -34,7 +34,7 @@ export const loginAsync = (username, password) => {
     ) {
       dispatch(loginSuccess(credentials));
     } else {
-      dispatch(loginFailure('Incorrect Credentials'));
+      dispatch(loginFailure('Incorrect details, please try again'));
     }
   };
 };
