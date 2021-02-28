@@ -1,8 +1,9 @@
 import './App.css';
-import SignIn from './components/signin/sign';
+import SignIn from './components/signin/signin';
 import MainPage from './components/mainpage/mainpage';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import SignInContainer from './components/signin/signin.container';
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -12,7 +13,9 @@ function App() {
         <Route
           path="/"
           exact
-          render={() => (!user ? <SignIn /> : <Redirect to="/mainpage" />)}
+          render={() =>
+            !user ? <SignInContainer /> : <Redirect to="/mainpage" />
+          }
         />
         <Route
           path="/mainpage"

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { loginAsync } from '../../redux/user/user.actions';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useHistory } from 'react-router-dom';
+// import { loginAsync } from '../../redux/user/user.actions';
 import {
   FormContainer,
   SignInTitle,
@@ -12,13 +12,15 @@ import {
   ErrorMessage,
 } from './signin.styles';
 
-const SignIn = () => {
+const SignIn = (props) => {
+  const { errorMessage, login } = props;
+  console.log(props);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+  // const history = useHistory();
   // const { loginStart, loginFailure, loginSuccess } = props;
-  const dispatch = useDispatch();
-  const errorMessage = useSelector((state) => state.user.errorMessage);
+  // const dispatch = useDispatch();
+  // const errorMessage = useSelector((state) => state.user.errorMessage);
 
   const usernameHandlerChange = (event) => {
     setUsername(event.target.value);
@@ -69,7 +71,7 @@ const SignIn = () => {
             className="btn"
             onClick={(event) => {
               event.preventDefault();
-              dispatch(loginAsync(username, password));
+              login(username, password);
             }}
           >
             Submit
